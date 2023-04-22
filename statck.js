@@ -67,18 +67,45 @@ class Stack {
   }
 }
 
-const stack = new Stack();
-console.log(stack.size());
+/**
+ * 应用：进制转换
+ */
+function decimalToBinary(number) {
+  const stack = new Stack();
+  let rem;
 
-stack.push(1);
-console.log(stack, stack.peek());
+  while (number > 0) {
+    rem = Math.floor(number % 2);
+    stack.push(rem);
+    number = Math.floor(number / 2);
+  }
 
-stack.clear();
-console.log(stack);
+  let result = "";
+  while (!stack.isEmpty()) {
+    result += stack.pop();
+  }
 
-stack.push(1);
-stack.push(2);
+  return result;
+}
 
-console.log(stack.pop(), stack.size());
+function baseConvert(desNumber, base) {
+  const remStack = new Stack();
+  const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-console.log(stack.toString());
+  if (!(base >= 2 && base <= 36)) {
+    return "";
+  }
+
+  while (desNumber > 0) {
+    let rem = Math.floor(desNumber % base);
+    remStack.push(digits[rem]);
+    desNumber = Math.floor(desNumber / base);
+  }
+
+  let result = "";
+  while (!remStack.isEmpty()) {
+    result += remStack.pop();
+  }
+
+  return result;
+}
