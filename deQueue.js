@@ -63,6 +63,10 @@ class DeQueue {
     return this.items[this.count - 1];
   }
 
+  size() {
+    return this.count - this.lowestCount;
+  }
+
   isEmpty() {
     return this.count - this.lowestCount === 0;
   }
@@ -79,4 +83,31 @@ class DeQueue {
 
     return objString;
   }
+}
+
+/**
+ * 应用：回文检查
+ */
+
+function palindromeChecker(testString) {
+  if (typeof testString !== "string" || testString.length === 0) {
+    return false;
+  }
+
+  const deQueue = new DeQueue();
+  const str = testString.toLocaleLowerCase().split(" ").join("");
+  for (let i = 0; i < str.length; i++) {
+    deQueue.addBack(str.charAt(i));
+  }
+
+  let isEqual = true;
+  while (deQueue.size() > 1 && isEqual) {
+    const frontStr = deQueue.removeFront();
+    const backStr = deQueue.removeBack();
+    if (frontStr !== backStr) {
+      isEqual = false;
+    }
+  }
+
+  return isEqual;
 }
