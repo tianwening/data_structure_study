@@ -56,6 +56,10 @@ class Queue {
   }
 }
 
+module.exports = {
+  Queue,
+};
+
 /**
  * 应用：击鼓传花游戏
  */

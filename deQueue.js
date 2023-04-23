@@ -85,6 +85,10 @@ class DeQueue {
   }
 }
 
+module.exports = {
+  DeQueue,
+};
+
 /**
  * 应用：回文检查
  */
